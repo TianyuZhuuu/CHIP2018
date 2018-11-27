@@ -1,7 +1,7 @@
 # CHIP2018-平安医疗科技智能患者健康咨询问句匹配大赛 Rank6解决方案
 
 ## 0. 排名
-![Rank][pic/Rank.jpg]
+![TextCNN](pic/Rank.jpg)
 
 ## 1. 特征工程
 这部分统计了以下几类特征：
