@@ -4,6 +4,9 @@ from _0_imports import *
 
 
 def get_layer1_input():
+    decatt_train = np.load('../blending/DecomposableAttention_f1_train_0.8529.npy')
+    decatt_test = np.load('../blending/DecomposableAttention_f1_train_0.8529.npy')
+
     # decatt_train = np.load('../blending/DecomposableAttention_1125_f1_train_0.8527.npy')
     # decatt_test = np.load('../blending/DecomposableAttention_1125_f1_test_0.8527.npy')
 
@@ -83,25 +86,20 @@ if __name__ == '__main__':
 
     train_data, train_label, test_data = get_layer1_input()
 
-    for i in range(1, 11):
-        model = LGBMClassifier(num_leaves=15, learning_rate=0.05, n_estimators=50000, subsample=0.8,
-                               colsample_bytree=0.8, random_state=i)
-        stacking_layer1_oof_pred(model, f'lgbm_15leaves_50k', train_data, train_label, test_data, 10)
-
     # shallow lgbm
-    # for i in range(1, 11):
-    #     model = LGBMClassifier(num_leaves=7, learning_rate=0.05, n_estimators=500, subsample=0.8, colsample_bytree=0.8,
-    #                            random_state=i)
-    #     stacking_layer1_oof_pred(model, f'lgbm_7leaves_1125_full', train_data, train_label, test_data, 10)
+    for i in range(1, 11):
+        model = LGBMClassifier(num_leaves=7, learning_rate=0.05, n_estimators=500, subsample=0.8, colsample_bytree=0.8,
+                               random_state=i)
+        stacking_layer1_oof_pred(model, f'lgbm_7leaves', train_data, train_label, test_data, 10)
 
     # medium lgbm
-    # for i in range(1, 11):
-    #     model = LGBMClassifier(num_leaves=31, learning_rate=0.05, n_estimators=500, subsample=0.8, colsample_bytree=0.8,
-    #                            random_state=i)
-    #     stacking_layer1_oof_pred(model, f'lgbm_31leaves_1125_full', train_data, train_label, test_data, 10)
+    for i in range(1, 11):
+        model = LGBMClassifier(num_leaves=31, learning_rate=0.05, n_estimators=500, subsample=0.8, colsample_bytree=0.8,
+                               random_state=i)
+        stacking_layer1_oof_pred(model, f'lgbm_31leaves', train_data, train_label, test_data, 10)
 
     # deep lgbm
-    # for i in range(1, 11):
-    #     model = LGBMClassifier(num_leaves=127, learning_rate=0.05, n_estimators=500, subsample=0.8,
-    #                            colsample_bytree=0.8, random_state=i)
-    #     stacking_layer1_oof_pred(model, f'lgbm_127leaves_1125_full', train_data, train_label, test_data, 10)
+    for i in range(1, 11):
+        model = LGBMClassifier(num_leaves=127, learning_rate=0.05, n_estimators=500, subsample=0.8,
+                               colsample_bytree=0.8, random_state=i)
+        stacking_layer1_oof_pred(model, f'lgbm_127leaves', train_data, train_label, test_data, 10)

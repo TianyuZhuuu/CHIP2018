@@ -35,12 +35,10 @@ def blending(base_dir, mean='mean', save=True, f1_or_loss='both'):
 
 
 if __name__ == '__main__':
-    # blending('../oof/InferSent')
-    # blending('../oof/InferSent_Feat', f1_or_loss='both')
-    # blending('../oof/SiameseTextCNN_1124', f1_or_loss='loss')
-    # blending('../oof/SiameseTextCNN_Feat_1124', f1_or_loss='both')
-    # blending('../oof/DecomposableAttention_1125', f1_or_loss='loss')
+    blending('../oof/InferSent', f1_or_loss='f1')
+    blending('../oof/InferSent_Feat', f1_or_loss='both')
+    blending('../oof/SiameseTextCNN_1124', f1_or_loss='loss')
+    blending('../oof/SiameseTextCNN_Feat_1124', f1_or_loss='both')
+    blending('../oof/DecomposableAttention', f1_or_loss='loss')
+    blending('../oof/DecomposableAttention_1125', f1_or_loss='loss')
     blending('../oof/DecomposableAttention_Feat_1125', f1_or_loss='loss')
-    # blending('../oof/DecomposableAttention')
-    # blending('../oof/1DCNN')
-    pass
