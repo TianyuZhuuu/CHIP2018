@@ -8,6 +8,7 @@
 - 基于词向量的特征：按idf对词向量进行加权得到句子的表示，计算两个句子向量之间的cosine，L1，L2，Linf距离，以及word mover distance。
 - 基于主题模型的特征：使用LDA、LSI、NMF对CountVectorizer/TfidfVectorizer得到的向量进行降维，然后计算cosine,L1,L2,Linf距离，从10维到150维。
 - 基于共享前缀后缀的特征：不考虑权重/idf权重/位置倒数权重计算前缀后缀匹配度。
+
 上述特征分别从字和词两个粒度进行了统计，生成了很多冗余特征，用lgbm计算特征重要程度，保留最重要的100个特征。
 
 ## 2. 模型
