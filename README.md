@@ -33,3 +33,11 @@ Aggregate中不使用sum而是拼接maxpool和avgpool的结果，其他没有改
 把五个模型的预测结果与100个特征拼接后，用LGBM进行集成(叶子数量7/31/127)，每个深度使用10个种子，共计30个。
 ### hill climbing
 30个LGBM使用hillclimbing进行集成。初始化一个空集S，每轮选择一个预测结果加入S使得S取平均后训练集上的f1值最大，跑100轮，(S中每个模型出现的次数/100)作为模型权重，加权平均作为结果提交。
+
+## 4.失败的尝试
+- 数据增强((q1==q2 & q2==q3) ==> q1==q3。(q1!=q2 & q2==q3) ==> q1!=q3。利用这个规则对训练集进行扩充(代价是训练时间显著增加，并且由于训练测试集问题id没有交集，可能新增的question pairs对测试集并没有很大帮助)，但是本地CV分数下降，没有继续尝试)
+- 图特征(如果我没记错的话，训练集出现的问题id和测试集中的问题id是没有交集的，另外数据量比较小，感觉图特征不是很有用)
+- pseudo label (soft/hard)
+- 各种训练技巧(低学习率finetune embedding、跑几个epoch后再finetune embedding、fix embedding跑完后固定其他层参数finetune embedding、adam跑几个epoch换sgd)
+- TTA，validation/test时把model(q1,q2)和model(q2,q1)的结果取平均。
+- ESIM、LexDecomp、SSE等复杂模型。使用到的三个模型的结构都比较简单，复杂模型像ESIM在本地CV表现不好，猜测可能也是因为数据比较少的原因。
