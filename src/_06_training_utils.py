@@ -1,7 +1,7 @@
 from sklearn.metrics import log_loss
 
-from _0_imports import *
-from _5_prepare_data import CHIPDataset
+from _00_imports import *
+from _05_prepare_data import CHIPDataset
 
 
 def fit(model_fn, model_name, word_path, char_path, num_folds=5, batch_size=32, lr=1e-3, seed=1):
